@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B6F62B6D16D1815D00E8B6C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62B6C16D1815D00E8B6C1 /* UIKit.framework */; };
+		B6F62B6F16D1815D00E8B6C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62B6E16D1815D00E8B6C1 /* Foundation.framework */; };
+		B6F62B7116D1815D00E8B6C1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62B7016D1815D00E8B6C1 /* CoreGraphics.framework */; };
+		B6F62B7716D1815D00E8B6C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B6F62B7516D1815D00E8B6C1 /* InfoPlist.strings */; };
+		B6F62B7916D1815E00E8B6C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F62B7816D1815D00E8B6C1 /* main.m */; };
+		B6F62B7D16D1815E00E8B6C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F62B7C16D1815E00E8B6C1 /* AppDelegate.m */; };
+		B6F62B7F16D1815E00E8B6C1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F62B7E16D1815E00E8B6C1 /* Default.png */; };
+		B6F62B8116D1815E00E8B6C1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F62B8016D1815E00E8B6C1 /* Default@2x.png */; };
+		B6F62B8316D1815E00E8B6C1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F62B8216D1815E00E8B6C1 /* Default-568h@2x.png */; };
+		B6F62B8616D1815E00E8B6C1 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F62B8416D1815E00E8B6C1 /* MainStoryboard_iPhone.storyboard */; };
+		B6F62B8916D1815E00E8B6C1 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F62B8716D1815E00E8B6C1 /* MainStoryboard_iPad.storyboard */; };
+		B6F62B8C16D1815E00E8B6C1 /* RecordingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F62B8B16D1815E00E8B6C1 /* RecordingViewController.m */; };
+		B6F62B9416D1856800E8B6C1 /* VideoCameraInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F62B9316D1856800E8B6C1 /* VideoCameraInputManager.m */; };
+		B6F62B9616D186AF00E8B6C1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62B9516D186AF00E8B6C1 /* AVFoundation.framework */; };
+		B6F62B9816D186B400E8B6C1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62B9716D186B400E8B6C1 /* QuartzCore.framework */; };
+		B6F62B9B16D186C300E8B6C1 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62B9916D186C300E8B6C1 /* CoreMedia.framework */; };
+		B6F62B9C16D186C300E8B6C1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62B9A16D186C300E8B6C1 /* MediaPlayer.framework */; };
+		B6F62B9E16D186CC00E8B6C1 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62B9D16D186CC00E8B6C1 /* CoreVideo.framework */; };
+		B6F62BA016D186DA00E8B6C1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62B9F16D186DA00E8B6C1 /* MobileCoreServices.framework */; };
+		B6F62BA216D186DF00E8B6C1 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F62BA116D186DF00E8B6C1 /* AssetsLibrary.framework */; };
+		B6F62BA516D2DB3F00E8B6C1 /* AVAssetStitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F62BA416D2DB3F00E8B6C1 /* AVAssetStitcher.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B6F62B6916D1815D00E8B6C1 /* MultiVidCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiVidCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6F62B6C16D1815D00E8B6C1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B6F62B6E16D1815D00E8B6C1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B6F62B7016D1815D00E8B6C1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B6F62B7416D1815D00E8B6C1 /* MultiVidCam-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultiVidCam-Info.plist"; sourceTree = "<group>"; };
+		B6F62B7616D1815D00E8B6C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B6F62B7816D1815D00E8B6C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B6F62B7A16D1815E00E8B6C1 /* MultiVidCam-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MultiVidCam-Prefix.pch"; sourceTree = "<group>"; };
+		B6F62B7B16D1815E00E8B6C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B6F62B7C16D1815E00E8B6C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B6F62B7E16D1815E00E8B6C1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B6F62B8016D1815E00E8B6C1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B6F62B8216D1815E00E8B6C1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B6F62B8516D1815E00E8B6C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		B6F62B8816D1815E00E8B6C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		B6F62B8A16D1815E00E8B6C1 /* RecordingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordingViewController.h; sourceTree = "<group>"; };
+		B6F62B8B16D1815E00E8B6C1 /* RecordingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordingViewController.m; sourceTree = "<group>"; };
+		B6F62B9216D1856800E8B6C1 /* VideoCameraInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCameraInputManager.h; sourceTree = "<group>"; };
+		B6F62B9316D1856800E8B6C1 /* VideoCameraInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCameraInputManager.m; sourceTree = "<group>"; };
+		B6F62B9516D186AF00E8B6C1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B6F62B9716D186B400E8B6C1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B6F62B9916D186C300E8B6C1 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B6F62B9A16D186C300E8B6C1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B6F62B9D16D186CC00E8B6C1 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		B6F62B9F16D186DA00E8B6C1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		B6F62BA116D186DF00E8B6C1 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		B6F62BA316D2DB3F00E8B6C1 /* AVAssetStitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVAssetStitcher.h; sourceTree = "<group>"; };
+		B6F62BA416D2DB3F00E8B6C1 /* AVAssetStitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVAssetStitcher.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6F62B6616D1815D00E8B6C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6F62BA216D186DF00E8B6C1 /* AssetsLibrary.framework in Frameworks */,
+				B6F62BA016D186DA00E8B6C1 /* MobileCoreServices.framework in Frameworks */,
+				B6F62B9E16D186CC00E8B6C1 /* CoreVideo.framework in Frameworks */,
+				B6F62B9B16D186C300E8B6C1 /* CoreMedia.framework in Frameworks */,
+				B6F62B9C16D186C300E8B6C1 /* MediaPlayer.framework in Frameworks */,
+				B6F62B9816D186B400E8B6C1 /* QuartzCore.framework in Frameworks */,
+				B6F62B9616D186AF00E8B6C1 /* AVFoundation.framework in Frameworks */,
+				B6F62B6D16D1815D00E8B6C1 /* UIKit.framework in Frameworks */,
+				B6F62B6F16D1815D00E8B6C1 /* Foundation.framework in Frameworks */,
+				B6F62B7116D1815D00E8B6C1 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B6F62B6016D1815D00E8B6C1 = {
+			isa = PBXGroup;
+			children = (
+				B6F62B7216D1815D00E8B6C1 /* MultiVidCam */,
+				B6F62B6B16D1815D00E8B6C1 /* Frameworks */,
+				B6F62B6A16D1815D00E8B6C1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B6F62B6A16D1815D00E8B6C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B6F62B6916D1815D00E8B6C1 /* MultiVidCam.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6F62B6B16D1815D00E8B6C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6F62BA116D186DF00E8B6C1 /* AssetsLibrary.framework */,
+				B6F62B9F16D186DA00E8B6C1 /* MobileCoreServices.framework */,
+				B6F62B9D16D186CC00E8B6C1 /* CoreVideo.framework */,
+				B6F62B9916D186C300E8B6C1 /* CoreMedia.framework */,
+				B6F62B9A16D186C300E8B6C1 /* MediaPlayer.framework */,
+				B6F62B9716D186B400E8B6C1 /* QuartzCore.framework */,
+				B6F62B9516D186AF00E8B6C1 /* AVFoundation.framework */,
+				B6F62B6C16D1815D00E8B6C1 /* UIKit.framework */,
+				B6F62B6E16D1815D00E8B6C1 /* Foundation.framework */,
+				B6F62B7016D1815D00E8B6C1 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B6F62B7216D1815D00E8B6C1 /* MultiVidCam */ = {
+			isa = PBXGroup;
+			children = (
+				B6F62B7B16D1815E00E8B6C1 /* AppDelegate.h */,
+				B6F62B7C16D1815E00E8B6C1 /* AppDelegate.m */,
+				B6F62B8416D1815E00E8B6C1 /* MainStoryboard_iPhone.storyboard */,
+				B6F62B8716D1815E00E8B6C1 /* MainStoryboard_iPad.storyboard */,
+				B6F62B8A16D1815E00E8B6C1 /* RecordingViewController.h */,
+				B6F62B8B16D1815E00E8B6C1 /* RecordingViewController.m */,
+				B6F62B9216D1856800E8B6C1 /* VideoCameraInputManager.h */,
+				B6F62B9316D1856800E8B6C1 /* VideoCameraInputManager.m */,
+				B6F62BA316D2DB3F00E8B6C1 /* AVAssetStitcher.h */,
+				B6F62BA416D2DB3F00E8B6C1 /* AVAssetStitcher.m */,
+				B6F62B7316D1815D00E8B6C1 /* Supporting Files */,
+			);
+			path = MultiVidCam;
+			sourceTree = "<group>";
+		};
+		B6F62B7316D1815D00E8B6C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B6F62B7416D1815D00E8B6C1 /* MultiVidCam-Info.plist */,
+				B6F62B7516D1815D00E8B6C1 /* InfoPlist.strings */,
+				B6F62B7816D1815D00E8B6C1 /* main.m */,
+				B6F62B7A16D1815E00E8B6C1 /* MultiVidCam-Prefix.pch */,
+				B6F62B7E16D1815E00E8B6C1 /* Default.png */,
+				B6F62B8016D1815E00E8B6C1 /* Default@2x.png */,
+				B6F62B8216D1815E00E8B6C1 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B6F62B6816D1815D00E8B6C1 /* MultiVidCam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B6F62B8F16D1815E00E8B6C1 /* Build configuration list for PBXNativeTarget "MultiVidCam" */;
+			buildPhases = (
+				B6F62B6516D1815D00E8B6C1 /* Sources */,
+				B6F62B6616D1815D00E8B6C1 /* Frameworks */,
+				B6F62B6716D1815D00E8B6C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MultiVidCam;
+			productName = MultiVidCam;
+			productReference = B6F62B6916D1815D00E8B6C1 /* MultiVidCam.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B6F62B6116D1815D00E8B6C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Carson McDonald";
+			};
+			buildConfigurationList = B6F62B6416D1815D00E8B6C1 /* Build configuration list for PBXProject "MultiVidCam" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B6F62B6016D1815D00E8B6C1;
+			productRefGroup = B6F62B6A16D1815D00E8B6C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B6F62B6816D1815D00E8B6C1 /* MultiVidCam */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B6F62B6716D1815D00E8B6C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6F62B7716D1815D00E8B6C1 /* InfoPlist.strings in Resources */,
+				B6F62B7F16D1815E00E8B6C1 /* Default.png in Resources */,
+				B6F62B8116D1815E00E8B6C1 /* Default@2x.png in Resources */,
+				B6F62B8316D1815E00E8B6C1 /* Default-568h@2x.png in Resources */,
+				B6F62B8616D1815E00E8B6C1 /* MainStoryboard_iPhone.storyboard in Resources */,
+				B6F62B8916D1815E00E8B6C1 /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B6F62B6516D1815D00E8B6C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6F62B7916D1815E00E8B6C1 /* main.m in Sources */,
+				B6F62B7D16D1815E00E8B6C1 /* AppDelegate.m in Sources */,
+				B6F62B8C16D1815E00E8B6C1 /* RecordingViewController.m in Sources */,
+				B6F62B9416D1856800E8B6C1 /* VideoCameraInputManager.m in Sources */,
+				B6F62BA516D2DB3F00E8B6C1 /* AVAssetStitcher.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B6F62B7516D1815D00E8B6C1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6F62B7616D1815D00E8B6C1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B6F62B8416D1815E00E8B6C1 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6F62B8516D1815E00E8B6C1 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		B6F62B8716D1815E00E8B6C1 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B6F62B8816D1815E00E8B6C1 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B6F62B8D16D1815E00E8B6C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B6F62B8E16D1815E00E8B6C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B6F62B9016D1815E00E8B6C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MultiVidCam/MultiVidCam-Prefix.pch";
+				INFOPLIST_FILE = "MultiVidCam/MultiVidCam-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B6F62B9116D1815E00E8B6C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MultiVidCam/MultiVidCam-Prefix.pch";
+				INFOPLIST_FILE = "MultiVidCam/MultiVidCam-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B6F62B6416D1815D00E8B6C1 /* Build configuration list for PBXProject "MultiVidCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6F62B8D16D1815E00E8B6C1 /* Debug */,
+				B6F62B8E16D1815E00E8B6C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B6F62B8F16D1815E00E8B6C1 /* Build configuration list for PBXNativeTarget "MultiVidCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B6F62B9016D1815E00E8B6C1 /* Debug */,
+				B6F62B9116D1815E00E8B6C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B6F62B6116D1815D00E8B6C1 /* Project object */;
+}

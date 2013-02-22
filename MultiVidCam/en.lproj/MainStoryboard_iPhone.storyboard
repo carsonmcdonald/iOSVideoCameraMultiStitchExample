@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G56" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Recording View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="RecordingViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntb-LU-Pql"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQf-kK-9Ax">
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1d-DO-atg">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="8D7-Mk-scq"/>
+                                    <constraint firstAttribute="height" constant="29" id="uJN-wJ-HPE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelAction:" destination="2" eventType="touchUpInside" id="NlH-fY-MNw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BsD-Q3-9dp">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="0B4-mc-bUj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recordTouchCancel:" destination="2" eventType="touchCancel" id="Ufb-jF-Iz5"/>
+                                    <action selector="recordTouchDown:" destination="2" eventType="touchDown" id="n6p-PX-DnY"/>
+                                    <action selector="recordTouchUp:" destination="2" eventType="touchUpInside" id="DpT-wd-wli"/>
+                                    <action selector="recordTouchUp:" destination="2" eventType="touchUpOutside" id="SB8-uZ-5Eh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aan-rF-3bi">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="NPE-dC-bKI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled" title="Save">
+                                    <color key="titleColor" red="1" green="0.035351606610000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveRecording:" destination="2" eventType="touchUpInside" id="nUc-d0-0Ym"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLG-2n-MR7">
+                                <subviews>
+                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfA-xs-day">
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Saving Video..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bfj-oS-I9a">
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="163" id="Pyh-Iq-cym"/>
+                                                    <constraint firstAttribute="height" constant="81" id="cm3-8T-yeZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Bfj-oS-I9a" firstAttribute="top" secondItem="sfA-xs-day" secondAttribute="top" constant="142" id="1dS-Lp-Qfr"/>
+                                            <constraint firstItem="Bfj-oS-I9a" firstAttribute="centerX" secondItem="sfA-xs-day" secondAttribute="centerX" type="default" id="9MB-1W-yyh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="sfA-xs-day" firstAttribute="trailing" secondItem="xLG-2n-MR7" secondAttribute="trailing" type="default" id="baZ-nn-Leh"/>
+                                    <constraint firstItem="sfA-xs-day" firstAttribute="leading" secondItem="xLG-2n-MR7" secondAttribute="leading" type="default" id="dN9-JZ-Yiz"/>
+                                    <constraint firstItem="sfA-xs-day" firstAttribute="top" secondItem="xLG-2n-MR7" secondAttribute="top" type="default" id="dtC-zg-jQG"/>
+                                    <constraint firstItem="sfA-xs-day" firstAttribute="bottom" secondItem="xLG-2n-MR7" secondAttribute="bottom" type="default" id="irv-1h-oqj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xLG-2n-MR7" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="3UY-7f-ONS"/>
+                            <constraint firstAttribute="bottom" secondItem="aan-rF-3bi" secondAttribute="bottom" constant="75" id="9sD-95-0cj"/>
+                            <constraint firstItem="lQf-kK-9Ax" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Bpz-cN-Y9C"/>
+                            <constraint firstItem="ntb-LU-Pql" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="E2b-Es-68x"/>
+                            <constraint firstItem="aan-rF-3bi" firstAttribute="centerX" secondItem="lQf-kK-9Ax" secondAttribute="centerX" type="default" id="EFH-17-k8x"/>
+                            <constraint firstAttribute="trailing" secondItem="D1d-DO-atg" secondAttribute="trailing" constant="16" id="GGt-xI-7Eg"/>
+                            <constraint firstItem="BsD-Q3-9dp" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="HDr-Yi-Idk"/>
+                            <constraint firstAttribute="bottom" secondItem="xLG-2n-MR7" secondAttribute="bottom" constant="548" id="RFA-ws-2Dz"/>
+                            <constraint firstItem="xLG-2n-MR7" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="VsD-EZ-sfe"/>
+                            <constraint firstItem="BsD-Q3-9dp" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="ZdH-Dm-oW4"/>
+                            <constraint firstItem="D1d-DO-atg" firstAttribute="top" secondItem="3" secondAttribute="top" constant="14" id="aWk-PX-IYq"/>
+                            <constraint firstItem="lQf-kK-9Ax" firstAttribute="top" secondItem="ntb-LU-Pql" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eGO-X5-eh9"/>
+                            <constraint firstItem="xLG-2n-MR7" firstAttribute="top" secondItem="3" secondAttribute="top" constant="-548" id="g5O-Jr-kel"/>
+                            <constraint firstItem="BsD-Q3-9dp" firstAttribute="bottom" secondItem="lQf-kK-9Ax" secondAttribute="bottom" type="default" id="kdl-By-msb"/>
+                            <constraint firstAttribute="trailing" secondItem="ntb-LU-Pql" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="sLY-hU-fwq"/>
+                            <constraint firstItem="lQf-kK-9Ax" firstAttribute="top" secondItem="3" secondAttribute="top" constant="78" id="sld-hE-aEW"/>
+                            <constraint firstItem="lQf-kK-9Ax" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="xIG-g3-WYd"/>
+                            <constraint firstItem="BsD-Q3-9dp" firstAttribute="top" secondItem="ntb-LU-Pql" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="zLZ-d7-qON"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="busyView" destination="xLG-2n-MR7" id="kf5-4R-EcC"/>
+                        <outlet property="cancelButton" destination="D1d-DO-atg" id="g3r-va-XKJ"/>
+                        <outlet property="recordButton" destination="BsD-Q3-9dp" id="ebx-Vu-0Fe"/>
+                        <outlet property="saveButton" destination="aan-rF-3bi" id="wRq-12-say"/>
+                        <outlet property="videoPreviewView" destination="lQf-kK-9Ax" id="yk5-RI-xLf"/>
+                        <outlet property="videoRecrodingProgress" destination="ntb-LU-Pql" id="V2O-C4-BlT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-37" y="65"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RecordingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecordingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelAction:"/>
+                <relationship kind="action" name="recordTouchCancel:"/>
+                <relationship kind="action" name="recordTouchDown:"/>
+                <relationship kind="action" name="recordTouchUp:"/>
+                <relationship kind="action" name="saveRecording:"/>
+                <relationship kind="outlet" name="busyView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="recordButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="videoPreviewView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="videoRecrodingProgress" candidateClass="UIProgressView"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
