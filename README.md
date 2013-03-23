@@ -8,6 +8,19 @@ device then stitching those video segments together into one output file.
 
 When you save a video it is saved to your camera roll.
 
+Code Structure
+==============
+
+The two main classes that do the heavy lifting for the video capture and 
+processing are:
+
+**VideoCameraInputManager** - Pulls together the input sources and manages the 
+recording session. Allows for pausing and resuming video recording. Keeps track 
+of the total runtime of all the segements of video created by pausing and resuming.
+
+**AVAssetStitcher** - Stitches together multiple input videos and generate a single 
+mpeg4 output. Along the way it applies a CGAffineTransform to each video segment.
+
 Configuration Options
 =====================
 
