@@ -34,6 +34,15 @@
 #define MAX_RECORDING_LENGTH 6.0
 #define MIN_RECORDING_LENGTH 2.0
 
+// Set the recording preset to use
+#define CAPTURE_SESSION_PRESET AVCaptureSessionPreset640x480
+
+// Set the input device to use when first starting
+#define INITIAL_CAPTURE_DEVICE_POSITION AVCaptureDevicePositionBack
+
+// Set the initial torch mode
+#define INITIAL_TORCH_MODE AVCaptureTorchModeOff
+
 @implementation RecordingViewController
 {
     VideoCameraInputManager *videoCameraInputManager;
@@ -54,10 +63,11 @@
     };
     
     NSError *error;
-    [videoCameraInputManager setupSessionWithPreset:AVCaptureSessionPreset640x480
-                                 withCaptureDevice:AVCaptureDevicePositionBack 
-                                     withTorchMode:AVCaptureTorchModeOff
-                                         withError:&error];
+    [videoCameraInputManager setupSessionWithPreset:CAPTURE_SESSION_PRESET
+                                  withCaptureDevice:INITIAL_CAPTURE_DEVICE_POSITION
+                                      withTorchMode:INITIAL_TORCH_MODE
+                                          withError:&error];
+    
     
     if(error)
     {
