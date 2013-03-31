@@ -198,6 +198,11 @@
                     self.busyView.frame = CGRectMake(self.busyView.frame.origin.x, -self.busyView.frame.size.height, self.busyView.frame.size.width, self.busyView.frame.size.height);
                 } completion:^(BOOL finished) {
                     self.busyView.hidden = YES;
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Done" message:@"The video has been saved to your camera roll." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alertView show];
+                    });
                 }];
                 
                 [[NSFileManager defaultManager] removeItemAtURL:finalOutputFileURL error:nil];
