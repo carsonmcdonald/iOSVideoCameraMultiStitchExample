@@ -244,13 +244,17 @@
             CGFloat ratioH = videoSize.height / videoTrack.naturalSize.height;
             if(ratioW < ratioH)
             {
+                // When the ratios are larger than one, we must flip the translation.
+                float neg = (ratioH > 1.0) ? 1.0 : -1.0;
                 CGFloat diffH = videoTrack.naturalSize.height - (videoTrack.naturalSize.height * ratioH);
-                return CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, -diffH/2.0), CGAffineTransformMakeScale(ratioH, ratioH) );
+                return CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, neg*diffH/2.0), CGAffineTransformMakeScale(ratioH, ratioH) );
             }
             else
             {
+                // When the ratios are larger than one, we must flip the translation.
+                float neg = (ratioW > 1.0) ? 1.0 : -1.0;
                 CGFloat diffW = videoTrack.naturalSize.width - (videoTrack.naturalSize.width * ratioW);
-                return CGAffineTransformConcat( CGAffineTransformMakeTranslation(-diffW/2.0, 0), CGAffineTransformMakeScale(ratioW, ratioW) );
+                return CGAffineTransformConcat( CGAffineTransformMakeTranslation(neg*diffW/2.0, 0), CGAffineTransformMakeScale(ratioW, ratioW) );
             }
             
         } withErrorHandler:^(NSError *error) {
