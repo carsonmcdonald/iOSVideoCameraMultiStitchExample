@@ -103,8 +103,7 @@
     AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
     videoComposition.instructions = instructions;
     videoComposition.renderSize = outputSize;
-    AVMutableVideoCompositionInstruction *lastInstruction = ((AVMutableVideoCompositionInstruction *)instructions.lastObject);
-    videoComposition.frameDuration = CMTimeAdd(lastInstruction.timeRange.start, lastInstruction.timeRange.duration);
+    videoComposition.frameDuration = CMTimeMake(1, 30);
     
     AVAssetExportSession *exporter = [AVAssetExportSession exportSessionWithAsset:composition presetName:preset];
     NSParameterAssert(exporter != nil);
