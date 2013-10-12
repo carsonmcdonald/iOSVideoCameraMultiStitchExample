@@ -53,6 +53,8 @@
     id deviceOrientationDidChangeObserver;
     
     NSMutableArray *temporaryFileURLs;
+    NSMutableArray *temporaryAndCanceledFileURLs;
+    NSMutableArray *previousTotalRecordedTimeArray;
     
     long uniqueTimestamp;
     int currentRecordingSegment;
@@ -69,6 +71,9 @@
         setupComplete = NO;
         
         temporaryFileURLs = [[NSMutableArray alloc] init];
+        temporaryAndCanceledFileURLs = [[NSMutableArray alloc] init];
+        previousTotalRecordedTimeArray = [[NSMutableArray alloc] init];
+        
         currentRecordingSegment = 0;
         _isPaused = NO;
         _maxDuration = 0;
@@ -151,6 +156,8 @@
 - (void)startRecording
 {
     [temporaryFileURLs removeAllObjects];
+    [temporaryAndCanceledFileURLs removeAllObjects];
+    [previousTotalRecordedTimeArray removeAllObjects];
     
     uniqueTimestamp = [[NSDate date] timeIntervalSince1970];
     currentRecordingSegment = 0;
@@ -177,6 +184,7 @@
     _isPaused = YES;
     [movieFileOutput stopRecording];
     
+    [previousTotalRecordedTimeArray addObject:[NSValue valueWithCMTime:currentFinalDurration]];
     currentFinalDurration = CMTimeAdd(currentFinalDurration, movieFileOutput.recordedDuration);
 }
 
@@ -199,6 +207,27 @@
     }
     
     [movieFileOutput startRecordingToOutputFileURL:outputFileURL recordingDelegate:self];
+}
+
+- (void)removeLastSegment {
+    if (temporaryFileURLs) {
+        NSObject *lastSegment = [temporaryFileURLs lastObject];
+        
+        if (temporaryFileURLs.count > 0) {
+            [temporaryAndCanceledFileURLs addObject:lastSegment];
+            [temporaryFileURLs removeLastObject];
+
+            CMTime lastCurrentFinalDuration = ((NSValue *)[previousTotalRecordedTimeArray lastObject]).CMTimeValue;
+            
+            [previousTotalRecordedTimeArray removeLastObject];
+            
+            currentFinalDurration = lastCurrentFinalDuration;
+        }
+
+        if (temporaryFileURLs.count == 0) {
+            [self reset];
+        }
+    }
 }
 
 - (void)reset
@@ -281,6 +310,8 @@
         {
             [self cleanTemporaryFiles];
             [temporaryFileURLs removeAllObjects];
+            [temporaryAndCanceledFileURLs removeAllObjects];
+            [previousTotalRecordedTimeArray removeAllObjects];
             
             completionHandler(nil);
         }
@@ -506,6 +537,10 @@
 {
     [temporaryFileURLs enumerateObjectsUsingBlock:^(NSURL *temporaryFiles, NSUInteger idx, BOOL *stop) {
         [[NSFileManager defaultManager] removeItemAtURL:temporaryFiles error:nil];
+    }];
+    
+    [temporaryAndCanceledFileURLs enumerateObjectsUsingBlock:^(NSURL *temporaryCanceledFiles, NSUInteger idx, BOOL *stop) {
+        [[NSFileManager defaultManager] removeItemAtURL:temporaryCanceledFiles error:nil];
     }];
 }
 

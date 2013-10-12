@@ -33,6 +33,7 @@ typedef void (^ErrorHandlingBlock)(NSError *error);
 - (void)startRecording;
 - (void)pauseRecording;
 - (void)resumeRecording;
+- (void)removeLastSegment;
 
 - (void)reset;
 
