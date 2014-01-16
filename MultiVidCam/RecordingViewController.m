@@ -129,6 +129,9 @@
 }
 
 #pragma mark Record button
+- (IBAction)reverseAction:(id)sender {
+    [videoCameraInputManager reverseCamera];
+}
 
 - (IBAction)cancelAction:(id)sender
 {
