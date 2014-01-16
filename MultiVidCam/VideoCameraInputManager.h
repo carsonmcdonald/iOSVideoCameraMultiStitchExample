@@ -35,6 +35,8 @@ typedef void (^ErrorHandlingBlock)(NSError *error);
 - (void)resumeRecording;
 
 - (void)reset;
+- (void)reverseCamera;
+- (void)cleanTemporaryFiles;
 
 - (void)finalizeRecordingToFile:(NSURL *)finalVideoLocationURL withVideoSize:(CGSize)videoSize withPreset:(NSString *)preset withCompletionHandler:(void (^)(NSError *error))completionHandler;
 

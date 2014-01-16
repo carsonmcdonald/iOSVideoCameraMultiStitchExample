@@ -22,7 +22,9 @@
 
 #import <MobileCoreServices/UTCoreTypes.h>
 
-@interface VideoCameraInputManager (Private)
+@interface VideoCameraInputManager ()
+
+@property (nonatomic, strong) NSMutableDictionary *segmentFileDict;
 
 - (void)startNotificationObservers;
 - (void)endNotificationObservers;
@@ -75,6 +77,7 @@
         inFlightWrites = 0;
         
         movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
+        self.segmentFileDict = [[NSMutableDictionary alloc] init];
         
         [self startNotificationObservers];
     }
@@ -83,6 +86,7 @@
 
 - (void)dealloc
 {
+    NSLog(@"Video Camera Input Manager dealloc");
     [_captureSession removeOutput:movieFileOutput];
     
     [self endNotificationObservers];
@@ -90,6 +94,7 @@
 
 - (void)setupSessionWithPreset:(NSString *)preset withCaptureDevice:(AVCaptureDevicePosition)cd withTorchMode:(AVCaptureTorchMode)tm withError:(NSError **)error
 {
+    [self cleanTemporaryFiles];
     if(setupComplete)
     {
         *error = [NSError errorWithDomain:@"Setup session already complete." code:102 userInfo:nil];
@@ -150,8 +155,6 @@
 
 - (void)startRecording
 {
-    [temporaryFileURLs removeAllObjects];
-    
     uniqueTimestamp = [[NSDate date] timeIntervalSince1970];
     currentRecordingSegment = 0;
     _isPaused = NO;
@@ -163,13 +166,10 @@
         videoConnection.videoOrientation = orientation;
     }
     
-    NSURL *outputFileURL = [NSURL fileURLWithPath:[self constructCurrentTemporaryFilename]];
-   
-    [temporaryFileURLs addObject:outputFileURL];
-    
+    NSString *filePath = [self constructCurrentTemporaryFilename];
+    [self.segmentFileDict setObject:@(0) forKey:filePath];
     movieFileOutput.maxRecordedDuration = (_maxDuration > 0) ? CMTimeMakeWithSeconds(_maxDuration, 600) : kCMTimeInvalid;
-    
-    [movieFileOutput startRecordingToOutputFileURL:outputFileURL recordingDelegate:self];
+    [movieFileOutput startRecordingToOutputFileURL:[NSURL fileURLWithPath:filePath] recordingDelegate:self];
 }
 
 - (void)pauseRecording
@@ -182,33 +182,50 @@
 
 - (void)resumeRecording
 {
-    currentRecordingSegment++;
     _isPaused = NO;
+    currentRecordingSegment++;
     
-    NSURL *outputFileURL = [NSURL fileURLWithPath:[self constructCurrentTemporaryFilename]];
-    
-    [temporaryFileURLs addObject:outputFileURL];
-    
-    if(_maxDuration > 0)
-    {
-        movieFileOutput.maxRecordedDuration = CMTimeSubtract(CMTimeMakeWithSeconds(_maxDuration, 600), currentFinalDurration);
-    }
-    else
-    {
-        movieFileOutput.maxRecordedDuration = kCMTimeInvalid;
-    }
-    
-    [movieFileOutput startRecordingToOutputFileURL:outputFileURL recordingDelegate:self];
+    NSString *filePath = [self constructCurrentTemporaryFilename];
+    [self.segmentFileDict setObject:@(0) forKey:filePath];
+    movieFileOutput.maxRecordedDuration = (_maxDuration > 0) ? CMTimeSubtract(CMTimeMakeWithSeconds(_maxDuration, 600), currentFinalDurration) : kCMTimeInvalid;
+    [movieFileOutput startRecordingToOutputFileURL:[NSURL fileURLWithPath:filePath] recordingDelegate:self];
 }
 
 - (void)reset
 {
-    if (movieFileOutput.isRecording)
-    {
-        [self pauseRecording];
-    }
-    
+    [self pauseRecording];
     _isPaused = NO;
+    [_captureSession stopRunning];
+}
+
+- (void)reverseCamera {
+    NSArray *inputs = self.captureSession.inputs;
+    for ( AVCaptureDeviceInput *input in inputs ) {
+        AVCaptureDevice *device = input.device;
+        if ([device hasMediaType:AVMediaTypeVideo]) {
+            AVCaptureDevicePosition position = device.position;
+            AVCaptureDevice *newCamera = nil;
+            AVCaptureDeviceInput *newInput = nil;
+            
+            if (position == AVCaptureDevicePositionFront) {
+                newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
+            }
+            else {
+                newCamera = [self cameraWithPosition:AVCaptureDevicePositionFront];
+            }
+            newInput = [AVCaptureDeviceInput deviceInputWithDevice:newCamera error:nil];
+            
+            // beginConfiguration ensures that pending changes are not applied immediately
+            [self.captureSession beginConfiguration];
+            
+            [self.captureSession removeInput:input];
+            [self.captureSession addInput:newInput];
+            
+            // Changes take effect once the outermost commitConfiguration is invoked.
+            [self.captureSession commitConfiguration];
+            break;
+        }
+    }
 }
 
 - (void)finalizeRecordingToFile:(NSURL *)finalVideoLocationURL withVideoSize:(CGSize)videoSize withPreset:(NSString *)preset withCompletionHandler:(void (^)(NSError *error))completionHandler
@@ -218,13 +235,61 @@
     NSError *error;
     if([finalVideoLocationURL checkResourceIsReachableAndReturnError:&error])
     {
-        completionHandler([NSError errorWithDomain:@"Output file already exists." code:104 userInfo:nil]);
-        return;
+        [[NSFileManager defaultManager] removeItemAtURL:finalVideoLocationURL error:nil];
     }
     
-    if(inFlightWrites != 0)
-    {
-        completionHandler([NSError errorWithDomain:@"Can't finalize recording unless all sub-recorings are finished." code:106 userInfo:nil]);
+    //----------filter the failed files---------
+    [temporaryFileURLs removeAllObjects];
+    NSArray *keys = [self.segmentFileDict allKeys];
+    NSArray *sortedArray = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj1 compare:obj2 options:NSNumericSearch];
+    }];
+    
+    for (NSString *filePath in sortedArray) {
+        NSInteger fileValue = [self.segmentFileDict[filePath] integerValue];
+        if (fileValue == 0) {
+            NSLog(@"[0]not start and stop! filePath=%@", filePath);
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+            }
+        }
+        else if (fileValue == 1) {
+            NSLog(@"[1]started but not stop! filePath=%@", filePath);
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+            }
+        }
+        else if (fileValue == 2) {
+            NSLog(@"[2]stoped but not start! filePath=%@", filePath);
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+            }
+        }
+        else if (fileValue == 3) {
+            NSLog(@"[3]OK start and stop success!!! filePath=%@", filePath);
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                CGFloat fileSize = [self getFileSize:filePath];//KB
+                if (fileSize <= 10.0f) {
+                    [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+                }
+                else {
+                    [temporaryFileURLs addObject:[NSURL fileURLWithPath:filePath]];
+                }
+            }
+        }
+        else {
+            NSLog(@"[%d]other error! filepath=%@", fileValue, filePath);
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
+            }
+        }
+    }
+    //------------------------------------------
+    
+    
+    if ([temporaryFileURLs count] == 0) {
+        NSError *error1 = [NSError errorWithDomain:@"have no files!" code:108 userInfo:nil];
+        completionHandler(error1);
         return;
     }
     
@@ -279,13 +344,23 @@
         }
         else
         {
-            [self cleanTemporaryFiles];
-            [temporaryFileURLs removeAllObjects];
-            
             completionHandler(nil);
         }
-    
+        [self cleanTemporaryFiles];
     }];
+}
+
+- (CGFloat)getFileSize:(NSString *)filePath{
+    if ( ! [[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        return 0;
+    }
+    NSError *error=nil;
+    NSDictionary * fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
+    if (fileAttributes == nil || error!=nil) {
+        return 0;
+    }
+    long long fileSizeByte = [fileAttributes fileSize];
+    return fileSizeByte / 1024.0f;
 }
 
 - (CMTime)totalRecordingDuration
@@ -305,11 +380,17 @@
 
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didStartRecordingToOutputFileAtURL:(NSURL *)fileURL fromConnections:(NSArray *)connections
 {
-    inFlightWrites++;
+    NSInteger value = [[self.segmentFileDict objectForKey:[fileURL path]] integerValue];
+    value += 1;
+    self.segmentFileDict[[fileURL path]] = @(value);
 }
 
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)fileURL fromConnections:(NSArray *)connections error:(NSError *)error
 {
+    NSInteger value = [[self.segmentFileDict objectForKey:[fileURL path]] integerValue];
+    value += 2;
+    self.segmentFileDict[[fileURL path]] = @(value);
+    
     if(error)
     {
         if(self.asyncErrorHandler)
@@ -321,8 +402,6 @@
             NSLog(@"Error capturing output: %@", error);
         }
     }
-    
-    inFlightWrites--;
 }
 
 #pragma mark - Observer start and stop
@@ -499,14 +578,21 @@
 
 - (NSString *)constructCurrentTemporaryFilename
 {
-    return [NSString stringWithFormat:@"%@%@-%ld-%d.mov", NSTemporaryDirectory(), @"recordingsegment", uniqueTimestamp, currentRecordingSegment];
+    NSString *tempFolderPath = [NSString stringWithFormat:@"%@temprecordfiles",NSTemporaryDirectory()];
+    if ( ! [[NSFileManager defaultManager] fileExistsAtPath:tempFolderPath]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:tempFolderPath withIntermediateDirectories:YES attributes:nil error:NULL];
+    }
+    return [NSString stringWithFormat:@"%@/%@-%ld-%d.mov", tempFolderPath, @"recordingsegment", uniqueTimestamp, currentRecordingSegment];
 }
 
 - (void)cleanTemporaryFiles
 {
-    [temporaryFileURLs enumerateObjectsUsingBlock:^(NSURL *temporaryFiles, NSUInteger idx, BOOL *stop) {
-        [[NSFileManager defaultManager] removeItemAtURL:temporaryFiles error:nil];
-    }];
+    NSString *tempFolderPath = [NSString stringWithFormat:@"%@temprecordfiles",NSTemporaryDirectory()];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:tempFolderPath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:tempFolderPath error:nil];
+    }
+    
+    [temporaryFileURLs removeAllObjects];
 }
 
 @end

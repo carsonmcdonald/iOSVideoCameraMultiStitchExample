@@ -47,6 +47,12 @@
 
 - (void)addAsset:(AVURLAsset *)asset withTransform:(CGAffineTransform (^)(AVAssetTrack *videoTrack))transformToApply withErrorHandler:(void (^)(NSError *error))errorHandler
 {
+    if ([[asset tracksWithMediaType:AVMediaTypeVideo] count] == 0 ||
+        [[asset tracksWithMediaType:AVMediaTypeAudio] count] == 0)
+    {
+        return;
+    }
+    
     AVAssetTrack *videoTrack = [[asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
     
     AVMutableVideoCompositionInstruction *instruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];

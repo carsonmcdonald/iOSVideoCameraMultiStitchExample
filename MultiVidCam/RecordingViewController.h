@@ -36,5 +36,6 @@
 - (IBAction)recordTouchUp:(id)sender;
 - (IBAction)saveRecording:(id)sender;
 - (IBAction)cancelAction:(id)sender;
+- (IBAction)reverseAction:(id)sender;
 
 @end
